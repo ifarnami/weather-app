@@ -1,4 +1,5 @@
 import "./Card.scss";
+import searchIcon from "../../assets/search.png"
 import humidityIcon from "../../assets/humidity.png";
 import windIcon from "../../assets/wind.png";
 import { useState } from "react";
@@ -15,8 +16,7 @@ function Card() {
     setInputText(e.target.value);
   };
 
-  const searchLocation = (event) => {
-    if (event.key === "Enter") {
+  const searchLocation = () => {
       axios
         .get(url)
         .then((response) => {
@@ -26,21 +26,20 @@ function Card() {
           setData(err.response.data.cod);
         });
       setInputText("");
-    }
   };
 
   return (
     <div className="card">
       <div className="searchBox">
         <input
-          onKeyUp={handleKeyPress}
           type="text"
           value={inputText}
+          onKeyUp={handleKeyPress}
           onChange={(event) => setInputText(event.target.value)}
-          onKeyPress={searchLocation}
           placeholder="Enter City Name"
           spellCheck="false"
         />
+        <button><img src={searchIcon} alt="search icon" onClick={searchLocation}/></button>
       </div>
       {data === "404" ? (
         <h1>Location Not Found!</h1>
