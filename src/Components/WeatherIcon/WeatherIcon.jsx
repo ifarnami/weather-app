@@ -4,6 +4,7 @@ import cloudsIcon from "../../assets/clouds.png";
 import snowIcon from "../../assets/snow.png";
 import drizzleIcon from "../../assets/drizzle.png";
 import mistIcon from "../../assets/mist.png";
+import hazeIcon from "../../assets/haze.png";
 
 function WeatherIcon({ condition }) {
   let weatherImage = null;
@@ -31,6 +32,10 @@ function WeatherIcon({ condition }) {
 
     case "Clouds":
       weatherImage = cloudsIcon;
+      break;
+
+    case "Haze":
+      weatherImage = hazeIcon;
       break;
 
     default:
