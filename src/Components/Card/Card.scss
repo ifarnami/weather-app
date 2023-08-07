@@ -81,3 +81,16 @@
     }
   }
 }
+
+@media screen and (max-width: 460px) {
+  .details .col {
+    img {
+      width: 30px;
+    }
+
+    .humidity,
+    .wind {
+      font-size: 20px;
+    }
+  }
+}
