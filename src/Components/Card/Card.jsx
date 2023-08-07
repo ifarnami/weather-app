@@ -1,5 +1,5 @@
 import "./Card.scss";
-import searchIcon from "../../assets/search.png"
+import searchIcon from "../../assets/search.png";
 import humidityIcon from "../../assets/humidity.png";
 import windIcon from "../../assets/wind.png";
 import { useState } from "react";
@@ -12,20 +12,16 @@ function Card() {
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputText}&appid=a4ebc60e40e8cac8de97b2a2fd433093&units=metric`;
 
-  const handleKeyPress = (e) => {
-    setInputText(e.target.value);
-  };
-
   const searchLocation = () => {
-      axios
-        .get(url)
-        .then((response) => {
-          setData(response.data);
-        })
-        .catch((err) => {
-          setData(err.response.data.cod);
-        });
-      setInputText("");
+    axios
+      .get(url)
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((err) => {
+        setData(err.response.data.cod);
+      });
+    setInputText("");
   };
 
   return (
@@ -34,12 +30,19 @@ function Card() {
         <input
           type="text"
           value={inputText}
-          onKeyUp={handleKeyPress}
           onChange={(event) => setInputText(event.target.value)}
           placeholder="Enter City Name"
           spellCheck="false"
         />
-        <button><img src={searchIcon} alt="search icon" onClick={searchLocation}/></button>
+        {inputText.length === 0 ? (
+          <button disabled>
+            <img src={searchIcon} alt="search icon" />
+          </button>
+        ) : (
+          <button>
+            <img src={searchIcon} alt="search icon" onClick={searchLocation} />
+          </button>
+        )}
       </div>
       {data === "404" ? (
         <h1>Location Not Found!</h1>

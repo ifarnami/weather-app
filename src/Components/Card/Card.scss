@@ -9,8 +9,10 @@
   text-align: center;
 
   .searchBox {
+    display: flex;
+
     input {
-      width: 100%;
+      width: 80%;
       border: 0;
       outline: 0;
       background-color: #ebfffc;
@@ -33,6 +35,10 @@
       cursor: pointer;
       display: grid;
       place-items: center;
+      
+      &:disabled {
+        cursor: no-drop;
+      }
 
       img {
         width: 16px;
