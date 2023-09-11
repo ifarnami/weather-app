@@ -5,21 +5,26 @@ import windIcon from "../../assets/wind.png";
 import { useState } from "react";
 import axios from "axios";
 import WeatherIcon from "../WeatherIcon/WeatherIcon";
+import Loader from "../Loader/Loader";
 
 function Card() {
   const [inputText, setInputText] = useState("");
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputText}&appid=a4ebc60e40e8cac8de97b2a2fd433093&units=metric`;
 
   const searchLocation = () => {
+    setLoading(true);
     axios
       .get(url)
       .then((response) => {
         setData(response.data);
+        setLoading(false);
       })
       .catch((err) => {
         setData(err.response.data.cod);
+        setLoading(false);
       });
     setInputText("");
   };
@@ -44,7 +49,9 @@ function Card() {
           </button>
         )}
       </div>
-      {data === "404" ? (
+      {loading === true ? (
+        <Loader />
+      ) : data === "404" ? (
         <h1>Location Not Found!</h1>
       ) : (
         <div className="weather">
