@@ -1,3 +1,11 @@
-# React + Vite
 
-My first time working with API in ReactJs, a simple Weather App that is responsive for both desktop and mobile.
+# Advanced Weather App
+This is a simple weather website that io built while learning react.
+
+## Tech Stack
+
+**Client:** React, Axios
+
+## Screenshots
+
+![Screenshot](src/screenshots/simple.png)
